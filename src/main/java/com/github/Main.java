@@ -14,7 +14,7 @@ public class Main {
             InitialDirContext context = LdapSystem.setup();
             System.out.println("Connected to LDAP server successfully.");
 
-            ldapAddService.addOrganization(context);
+            ldapAddService.addOrganization(context, "Company");
             ldapAddService.addOrganizationalUnit(context);
 
             context.close();
