@@ -1,41 +1,43 @@
 package com.github.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.github.factory.objectclass.Organization;
+import com.github.factory.objectclass.OrganizationUnit;
+import com.github.factory.objectclass.Person;
 
-import javax.naming.NamingException;
-import javax.naming.directory.*;
+import javax.naming.directory.Attributes;
+import javax.naming.directory.BasicAttributes;
+
+import static com.github.attribute.AttributeEnum.*;
+
 
 public class LdapAddService {
-    private static final Logger logger = LoggerFactory.getLogger(LdapAddService.class);
 
-    public void addOrganization(DirContext context, String o) throws NamingException {
-        String organizationDN = String.format("o=%s,dc=example,dc=com", o);
+    public Attributes getOrganization(String o) {
         Attributes attributes = new BasicAttributes(true);
-        Attribute attribute = new BasicAttribute("objectClass");
-        attribute.add("top");
-        attribute.add("organization");
+        attributes.put(new Organization().getAttribute());
 
-        attributes.put(attribute);
-        attributes.put("o", o);
+        attributes.put(ORGANIZATION.getKey(), o);
 
-        context.createSubcontext(organizationDN, attributes);
-
-        logger.info("Added organization: {}", organizationDN);
+        return attributes;
     }
 
-    public void addOrganizationalUnit(DirContext context) throws NamingException {
-        String organizationalUnitDN = "ou=users,o=Company,dc=example,dc=com";
+
+    public Attributes getOrganizationUnit(String ou) {
         Attributes attributes = new BasicAttributes(true);
-        Attribute attribute = new BasicAttribute("objectClass");
-        attribute.add("top");
-        attribute.add("organizationalUnit");
+        attributes.put(new OrganizationUnit().getAttribute());
 
-        attributes.put(attribute);
-        attributes.put("ou", "users");
+        attributes.put(ORGANIZATION_UNIT.getKey(), ou);
 
-        context.createSubcontext(organizationalUnitDN, attributes);
+        return attributes;
+    }
 
-        logger.info("Added organizational unit: {}", organizationalUnitDN);
+    public Attributes getPerson(String cn, String sn) {
+        Attributes attributes = new BasicAttributes(true);
+        attributes.put(new Person().getAttribute());
+
+        attributes.put(COMMON_NAME.getKey(), cn);
+        attributes.put(SURNAME.getKey(), sn);
+
+        return attributes;
     }
 }
