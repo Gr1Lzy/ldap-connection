@@ -4,22 +4,15 @@ import lombok.Getter;
 
 @Getter
 public enum AttributeEnum {
-    ORGANIZATION("o", "organization"),
-    COUNTRY("c", "country"),
-    LOCALITY("l", "locality"),
-    STAT_OF_PROVINCE("st", "stateOfProvince"),
-    EMAIL_ADDRESS("mail", "emailAddress"),
-    TELEPHONE_NUMBER("telephoneNumber", "telephoneNumber"),
-    TITLE("title", "title"),
-    USER_ID("uid", "userId"),
     OBJECT_CLASS("objectClass", "objectClass"),
-    DESCRIPTION("description", "description"),
-    GIVEN_NAME("givenName", "givenName"),
-    ORGANIZATION_UNIT("ou","organizationUnit"),
     COMMON_NAME("cn", "commonName"),
-    DISTINGUISHED_NAME("dc", "distinguishedName"),
     SURNAME("sn", "surname"),
-    TOP("top", "top");
+    ORGANIZATION_UNIT_NAME("ou", "organization"),
+
+    DOMAIN_COMPONENT("dc", "domainComponent"),
+
+    ORGANIZATION("o", "organization"),
+    ORGANIZATION_UNIT("ou", "organizationalUnitName");
 
     private final String key;
     private final String value;
