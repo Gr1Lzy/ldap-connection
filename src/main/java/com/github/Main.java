@@ -4,25 +4,19 @@ import com.github.config.LdapSystem;
 import com.github.service.LdapAddService;
 
 import javax.naming.NamingException;
-import javax.naming.directory.*;
+import javax.naming.directory.Attributes;
+import javax.naming.directory.DirContext;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NamingException {
+        DirContext context = LdapSystem.setup();
         LdapAddService ldapAddService = new LdapAddService();
 
-        try {
-            InitialDirContext context = LdapSystem.setup();
-            System.out.println("Connected to LDAP server successfully.");
+        String dn = "o=Company,dc=example,dc=com";
 
-            ldapAddService.addOrganization(context, "Company");
-            ldapAddService.addOrganizationalUnit(context);
 
-            context.close();
-        } catch (NamingException e) {
-            System.out.println("Failed to connect to LDAP server or add entries.");
-            e.printStackTrace();
-        }
+        Attributes attributes = ldapAddService.getOrganization("Company");
+        context.destroySubcontext(dn);
+        context.close();
     }
-
-
 }
