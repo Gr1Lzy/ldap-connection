@@ -2,12 +2,12 @@ package com.github.factory.objectclass;
 
 import javax.naming.directory.Attribute;
 
-public class Organization extends Top {
+public class DcObject extends Top {
 
     @Override
     public Attribute getAttribute() {
         Attribute objectClass = super.getAttribute();
-        objectClass.add("organization");
+        objectClass.add("dcObject");
         return objectClass;
     }
 }
