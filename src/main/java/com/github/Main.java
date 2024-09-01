@@ -1,22 +1,24 @@
 package com.github;
 
 import com.github.config.LdapSystem;
-import com.github.service.LdapAddService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.naming.NamingException;
-import javax.naming.directory.Attributes;
 import javax.naming.directory.DirContext;
 
 public class Main {
-    public static void main(String[] args) throws NamingException {
-        DirContext context = LdapSystem.setup();
-        LdapAddService ldapAddService = new LdapAddService();
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
-        String dn = "o=Company,dc=example,dc=com";
+    public static void main(String[] args) {
+        DirContext context;
+        try {
+            context = LdapSystem.setup();
 
-
-        Attributes attributes = ldapAddService.getOrganization("Company");
-        context.destroySubcontext(dn);
-        context.close();
+            TestPopulation testPopulation = new TestPopulation();
+            testPopulation.populate(context);
+        } catch (NamingException e) {
+            logger.warn("ERROR:", e);
+        }
     }
 }
