@@ -7,12 +7,9 @@ public enum AttributeEnum {
     OBJECT_CLASS("objectClass", "objectClass"),
     COMMON_NAME("cn", "commonName"),
     SURNAME("sn", "surname"),
-    ORGANIZATION_UNIT_NAME("ou", "organization"),
-
+    ORGANIZATIONAL_UNIT("ou", "organizationalUnit"),
     DOMAIN_COMPONENT("dc", "domainComponent"),
-
-    ORGANIZATION("o", "organization"),
-    ORGANIZATION_UNIT("ou", "organizationalUnitName");
+    ORGANIZATION("o", "organization");
 
     private final String key;
     private final String value;

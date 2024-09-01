@@ -1,14 +1,13 @@
 package com.github.service;
 
-import com.github.factory.objectclass.Organization;
-import com.github.factory.objectclass.OrganizationUnit;
-import com.github.factory.objectclass.Person;
+import com.github.objectclass.Organization;
+import com.github.objectclass.OrganizationalUnit;
+import com.github.objectclass.Person;
 
 import javax.naming.directory.Attributes;
 import javax.naming.directory.BasicAttributes;
 
 import static com.github.attribute.AttributeEnum.*;
-
 
 public class LdapAddService {
 
@@ -21,12 +20,11 @@ public class LdapAddService {
         return attributes;
     }
 
-
     public Attributes getOrganizationUnit(String ou) {
         Attributes attributes = new BasicAttributes(true);
-        attributes.put(new OrganizationUnit().getAttribute());
+        attributes.put(new OrganizationalUnit().getAttribute());
 
-        attributes.put(ORGANIZATION_UNIT.getKey(), ou);
+        attributes.put(ORGANIZATIONAL_UNIT.getKey(), ou);
 
         return attributes;
     }

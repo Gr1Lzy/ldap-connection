@@ -1,13 +1,13 @@
-package com.github.factory.objectclass;
+package com.github.objectclass;
 
 import javax.naming.directory.Attribute;
 
-public class OrganizationalPerson extends Person {
+public class InetOrgPerson extends OrganizationalPerson {
 
     @Override
     public Attribute getAttribute() {
         Attribute objectClass = super.getAttribute();
-        objectClass.add("organizationalPerson");
+        objectClass.add("organizationUnit");
         return objectClass;
     }
 }

@@ -1,4 +1,4 @@
-package com.github.factory;
+package com.github.objectclass;
 
 import javax.naming.directory.Attribute;
 
